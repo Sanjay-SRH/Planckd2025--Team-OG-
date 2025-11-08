@@ -37,7 +37,7 @@ plt.grid(True, linestyle='--', alpha=0.5)
 plt.ylim(0, np.max(ballistic_scaling) * 1.1)
 plt.xlim(0, MAX_Steps)
 save_path = '../results/classical_walk_emsd.png'
-os.makedirs('results', exist_ok=True)
+os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
 plt.savefig(save_path)
 plt.show()
