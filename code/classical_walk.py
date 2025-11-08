@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 MAX_Steps = 1000
 NUM_Walks = 5000
@@ -11,7 +12,7 @@ def simulate_classical_random_walk():
     initial_positions = np.zeros((NUM_Walks, 1))
     all_positions = np.hstack((initial_positions, positions))
 
-    step_array = np.arange(MAX_Steps + 1)
+    steps_array = np.arange(MAX_Steps + 1)
 
     squared_displacements = all_positions*2
     sum_of_squared_displacements = np.sum(squared_displacements, axis=0)
@@ -30,11 +31,13 @@ plt.plot(steps_array, ballistic_scaling, label=r'Ballistic Scaling: $0(N)$ (For 
 
 plt.title('Problem 0: RMS Displacement of 1D Classical Random walk')
 plt.xlabel('Number of Steps (N)', fontsize=14)
-plt.ylabel(r'Root-Mean-Squared Displacement ($\sqrt{\large X_N^2 \rangle}$)', fontsize=14)
+plt.ylabel(r'Root-Mean-Squared Displacement ($\sigma_{X}$)', fontsize=14)
 plt.legend()
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.ylim(0, np.max(ballistic_scaling) * 1.1)
 plt.xlim(0, MAX_Steps)
+save_path = '../results/classical_walk_emsd.png'
+os.makedirs('results', exist_ok=True)
 
-plt.savefig('results/classica_walk_rmsd.png')
+plt.savefig(save_path)
 plt.show()
